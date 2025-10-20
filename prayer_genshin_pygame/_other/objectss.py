@@ -7,11 +7,9 @@ def five() -> int:
     return 5
 
 def button_prayer_10():
-
-
     text = " ewoppwpoweewrwer "
     colors = ("black",  "white")
-    colors2 = ("yellow", "grey")
+    colors2 = ("yellow", "black")
 
     text_py = _other.cons.my_font.render(text, False, colors[0], colors[1])
 
@@ -27,5 +25,9 @@ def button_prayer_10():
         text_py = _other.cons.my_font.render(text, False, colors2[0], colors2[1])
     else:
         text_py = _other.cons.my_font.render(text, False, colors[0], colors[1])
+
+    if text_rect.collidepoint(mouse) and pygame.mouse.get_pressed()[0]:
+        text_py = _other.cons.my_font.render(text, False, colors2[0], colors2[1])
+        _other.cons.test_parem += 1
 
     _other.cons.scr.blit(text_py, coord)

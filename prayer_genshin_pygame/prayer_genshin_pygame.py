@@ -15,7 +15,7 @@ while run:
 
     _other.cons.scr.fill(pygame.Color("green"))
 
-    _other.cons.scr.blit(_other.cons.my_font.render(str(_other.objectss.five()), False, "black"), (400, 400))
+    _other.cons.scr.blit(_other.cons.my_font.render(str(_other.cons.test_parem), False, "black"), (400, 400))
 
     _other.objectss.button_prayer_10()
 

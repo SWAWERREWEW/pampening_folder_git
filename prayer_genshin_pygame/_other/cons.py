@@ -9,4 +9,6 @@ fps = 60
 
 my_font = pygame.font.Font("_other/fonts/BitcountGridSingle_Cursive-Black.ttf", 30)
 
+test_parem = 5
+
 scr = pygame.display.set_mode((wid, hei))
