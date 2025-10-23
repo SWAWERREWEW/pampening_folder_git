@@ -22,6 +22,7 @@ while run:
     pygame.display.update()
 
     for event in pygame.event.get():
+        if _other.objectss.is_clicked_button_prayer_10: _other.objectss.effect_button_prayer_10()
         if event.type == pygame.QUIT:
             pygame.quit()
             run = False

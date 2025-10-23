@@ -3,10 +3,13 @@ import _other.cons
 
 pygame.init()
 
-def five() -> int:
-    return 5
+is_clicked_button_prayer_10 = False
+
+def five() -> int: return 5
+
 
 def button_prayer_10():
+    global is_clicked_button_prayer_10
     text = " ewoppwpoweewrwer "
     colors = ("black",  "white")
     colors2 = ("yellow", "black")
@@ -28,6 +31,11 @@ def button_prayer_10():
 
     if text_rect.collidepoint(mouse) and pygame.mouse.get_pressed()[0]:
         text_py = _other.cons.my_font.render(text, False, colors2[0], colors2[1])
-        _other.cons.test_parem += 1
+        is_clicked_button_prayer_10 = True
+    else: is_clicked_button_prayer_10 = False
+
 
     _other.cons.scr.blit(text_py, coord)
+
+
+def effect_button_prayer_10(): _other.cons.test_parem += 1
