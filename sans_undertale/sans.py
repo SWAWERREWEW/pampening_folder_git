@@ -78,18 +78,23 @@ while _other.cons.run:
 
     pygame.display.update()
     for event in pygame.event.get():
+
+        if _other.scenes.fight_act_items_mercy.clicked_down_for_act:
+            _other.scenes.fight_act_items_mercy.effect_down_act()
+
+        if _other.scenes.fight_act_items_mercy.clicked_up_for_act:
+            _other.scenes.fight_act_items_mercy.effect_up_act()
+
         if event.type == pygame.QUIT:
             _other.cons.run = False
             pygame.quit()
             exit()
         if keys[pygame.K_a] and _other.cons.scene == "fight_act_items_mercy":
             _other.cons.focus -= 1
-            if _other.cons.focus < 0:
-                _other.cons.focus = len(_other.cons.names_buttons) - 1
+            if _other.cons.focus < 0: _other.cons.focus = len(_other.cons.names_buttons) - 1
         if keys[pygame.K_d] and _other.cons.scene == "fight_act_items_mercy":
             _other.cons.focus += 1
-            if _other.cons.focus >= len(_other.cons.names_buttons):
-                _other.cons.focus = 0
+            if _other.cons.focus >= len(_other.cons.names_buttons): _other.cons.focus = 0
 
     # Установка значения кадров в секунду
     clock.tick(_other.cons.fps)

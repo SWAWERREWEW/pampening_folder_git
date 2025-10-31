@@ -6,12 +6,39 @@ import _other.obj
 import _other.buttons
 import _other.scenes.message_in_tablo
 
-focus_line = 0
+focus_line_for_act = 0
+
+buttons_lines = [" Quit ", " Do nothing ", " Nothing "]
+
+clicked_down_for_act = False
+
+
+def effect_down_act():
+    global buttons_lines
+    global focus_line_for_act
+    focus_line_for_act += 1
+    if focus_line_for_act >= len(buttons_lines):
+        focus_line_for_act = 0
+
+
+clicked_up_for_act = False
+
+
+def effect_up_act():
+    global focus_line_for_act
+    global buttons_lines
+    focus_line_for_act -= 1
+    if focus_line_for_act < 0: focus_line_for_act = len(buttons_lines) - 1
+
 get_pressed = 0
 
 def fight_act_items_mercy(lines=None):
-    global focus_line
+    global focus_line_for_act
     global get_pressed
+    global buttons_lines
+    global clicked_up_for_act
+    global clicked_down_for_act
+    global clicked_z_act
 
     _other.obj.recreate_field()
     _other.obj.soul.x = _other.obj.field_b.x + _other.obj.field_b.wid//2
@@ -42,45 +69,36 @@ def fight_act_items_mercy(lines=None):
         _other.buttons.button_mercy()
 
     elif lines == "act":
-
-        buttons_lines = [" Quit ", " Do nothing ", " Nothing "]
-
-        if focus_line >= len(buttons_lines):
-            focus_line = 0
+        if focus_line_for_act >= len(buttons_lines):
+            focus_line_for_act = 0
 
         for indl, draw_but in enumerate(buttons_lines):
             _other.cons.scr.blit(_other.cons.my_font.render(draw_but, False, "white"),
             (_other.obj.field_b.x, _other.obj.field_b.y + 10 + 30 * indl))
-            if focus_line == indl:
+            if focus_line_for_act == indl:
                 _other.cons.scr.blit(_other.cons.my_font.render(draw_but, False, "yellow"),
                 (_other.obj.field_b.x, _other.obj.field_b.y + 10 + 30 * indl))
 
         keys = pygame.key.get_pressed()
 
         if keys[pygame.K_s] or keys[pygame.K_d]:
-            get_pressed += 1
-            if get_pressed == 25:
-                get_pressed = 0
-                focus_line += 1
-                if focus_line >= len(buttons_lines):
-                    focus_line = 0
+            clicked_down_for_act = True
+        else:
+            clicked_down_for_act = False
 
         if keys[pygame.K_w] or keys[pygame.K_a]:
-            get_pressed += 1
-            if get_pressed == 25:
-                get_pressed = 0
-                focus_line -= 1
-                if focus_line < 0:
-                    focus_line = len(buttons_lines) - 1
+            clicked_up_for_act = True
+        else:
+            clicked_up_for_act = False
 
         if keys[pygame.K_z]:
             get_pressed += 1
-            if get_pressed == 25:
+            if get_pressed >= 15:
                 get_pressed = 0
-                if buttons_lines[focus_line] == " Quit ":
+                if buttons_lines[focus_line_for_act] == " Quit ":
                     _other.obj.quit()
                     _other.cons.scene = _other.cons.scenes["location"]
-                if buttons_lines[focus_line] == " Do nothing ":
+                if buttons_lines[focus_line_for_act] == " Do nothing ":
                     _other.cons.scene = _other.cons.scenes["enemy_ataks"]
 
         if keys[pygame.K_x]:
