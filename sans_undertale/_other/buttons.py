@@ -77,7 +77,7 @@ def button_act():
         text_act = my_font.render("  ACT  ", False, "black", "green")
     else:
         text_act = my_font.render("  ACT  ", False, "black", "yellow")
-    
+
     # При нажатии
     if (text_act_rect.collidepoint(mouse) and pygame.mouse.get_pressed()[0] or
         (keys[pygame.K_z] and _other.cons.names_buttons[_other.cons.focus] == "act")):
@@ -115,10 +115,7 @@ def button_items():
         (keys[pygame.K_z] and _other.cons.names_buttons[_other.cons.focus] == "items")):
         text_items = my_font.render(" ITEMS ", False, "black", "green")
         _other.cons.scr.blit(text_items, coord_text_items)
-        _other.obj.soul.parem["hp"] += 45
-        if _other.obj.soul.parem["hp"] > _other.obj.soul.parem["max_hp"]:
-            _other.obj.soul.parem["hp"] = _other.obj.soul.parem["max_hp"]
-        _other.cons.scene = _other.cons.scenes["you_eat"]
+        _other.cons.scene = "items"
 
     _other.cons.scr.blit(text_items, coord_text_items)
 

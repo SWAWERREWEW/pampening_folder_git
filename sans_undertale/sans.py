@@ -31,14 +31,14 @@ while _other.cons.run:
     
     elif _other.cons.scene == _other.cons.scenes["you_eat"]:
         if _other.obj.sans.parem["hp"] <= 10:
-            _other.scenes.message_in_tablo.message_in_tablo(" You eat Legendary Hero ",
-            "enemy_ataks", " Your HP +45", " Last hit ", color3="red")
+            _other.scenes.message_in_tablo.message_in_tablo(" You eat ",
+            "enemy_ataks", "", " Last hit ", color3="red")
         elif _other.obj.soul.parem["hp"] == _other.obj.soul.parem["max_hp"]:
-            _other.scenes.message_in_tablo.message_in_tablo(" You eat Legendary Hero ", "enemy_ataks",
-            " Your HP +45", " Your HP is full")
+            _other.scenes.message_in_tablo.message_in_tablo(" You eat ", "enemy_ataks",
+            "", " Your HP is full")
         else:
-            _other.scenes.message_in_tablo.message_in_tablo(" You eat Legendary Hero ", "enemy_ataks",
-            " Your HP +45")
+            _other.scenes.message_in_tablo.message_in_tablo(" You eat ", "enemy_ataks",
+            " hahhhaahahaa ")
     
     elif _other.cons.scene == _other.cons.scenes["you_kill"]:
         _other.scenes.enemy_say.enemy_say(" AAAAAAAAAAAA ", "enemy_death")
@@ -49,6 +49,9 @@ while _other.cons.run:
     
     elif _other.cons.scene == _other.cons.scenes["you_act"]:
         _other.scenes.fight_act_items_mercy.fight_act_items_mercy("act")
+
+    elif _other.cons.scene == "items":
+        _other.scenes.fight_act_items_mercy.fight_act_items_mercy("items")
 
     elif _other.cons.scene == _other.cons.scenes["you_atak"]:
         _other.scenes.enemy_say.enemy_say(" ou shet ", "enemy_ataks")
@@ -85,13 +88,21 @@ while _other.cons.run:
         if _other.scenes.fight_act_items_mercy.clicked_up_for_act:
             _other.scenes.fight_act_items_mercy.effect_up_act()
 
+        if _other.scenes.fight_act_items_mercy.clicked_up_for_items:
+            _other.scenes.fight_act_items_mercy.effect_up_items()
+
+        if _other.scenes.fight_act_items_mercy.clicked_down_for_items:
+            _other.scenes.fight_act_items_mercy.effect_down_items()
+
         if event.type == pygame.QUIT:
             _other.cons.run = False
             pygame.quit()
             exit()
+
         if keys[pygame.K_a] and _other.cons.scene == "fight_act_items_mercy":
             _other.cons.focus -= 1
             if _other.cons.focus < 0: _other.cons.focus = len(_other.cons.names_buttons) - 1
+
         if keys[pygame.K_d] and _other.cons.scene == "fight_act_items_mercy":
             _other.cons.focus += 1
             if _other.cons.focus >= len(_other.cons.names_buttons): _other.cons.focus = 0
