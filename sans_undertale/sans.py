@@ -13,6 +13,8 @@ import _other.scenes.message_in_tablo
 
 pygame.init()
 
+s = _other.scenes
+
 while _other.cons.run:
     # Тормозим время
     clock = pygame.time.Clock()
@@ -34,11 +36,16 @@ while _other.cons.run:
             _other.scenes.message_in_tablo.message_in_tablo(" You eat ",
             "enemy_ataks", "", " Last hit ", color3="red")
         elif _other.obj.soul.parem["hp"] == _other.obj.soul.parem["max_hp"]:
-            _other.scenes.message_in_tablo.message_in_tablo(" You eat ", "enemy_ataks",
-            "", " Your HP is full")
+            _other.scenes.message_in_tablo.message_in_tablo(" You eat" +
+s.fight_act_items_mercy.buttons_lines_items[s.fight_act_items_mercy.focus_line_for_items][0],
+    "enemy_ataks", " you restore " +
+str(s.fight_act_items_mercy.buttons_lines_items[s.fight_act_items_mercy.focus_line_for_items][1]),
+" Your HP is full")
         else:
-            _other.scenes.message_in_tablo.message_in_tablo(" You eat ", "enemy_ataks",
-            " hahhhaahahaa ")
+            _other.scenes.message_in_tablo.message_in_tablo(" You eat " +
+s.fight_act_items_mercy.buttons_lines_items[s.fight_act_items_mercy.focus_line_for_items][0], "enemy_ataks",
+            " you restore " +
+str(s.fight_act_items_mercy.buttons_lines_items[s.fight_act_items_mercy.focus_line_for_items][1]))
     
     elif _other.cons.scene == _other.cons.scenes["you_kill"]:
         _other.scenes.enemy_say.enemy_say(" AAAAAAAAAAAA ", "enemy_death")
