@@ -6,8 +6,6 @@ import _other.obj
 import _other.buttons
 import _other.scenes.message_in_tablo
 
-focus_line_for_act = 0
-
 buttons_lines_act = [" Quit ", " Do nothing ", " Nothing "]
 
 
@@ -16,20 +14,18 @@ clicked_down_for_act = False
 
 def effect_down_act():
     global buttons_lines_act
-    global focus_line_for_act
-    focus_line_for_act += 1
-    if focus_line_for_act >= len(buttons_lines_act):
-        focus_line_for_act = 0
+    _other.cons.focus += 1
+    if _other.cons.focus >= len(buttons_lines_act):
+        _other.cons.focus = 0
 
 
 clicked_up_for_act = False
 
 
 def effect_up_act():
-    global focus_line_for_act
     global buttons_lines_act
-    focus_line_for_act -= 1
-    if focus_line_for_act < 0: focus_line_for_act = len(buttons_lines_act) - 1
+    _other.cons.focus -= 1
+    if _other.cons.focus < 0: _other.cons.focus = len(buttons_lines_act) - 1
 
 
 get_pressed = 0
@@ -37,34 +33,28 @@ get_pressed = 0
 
 buttons_lines_items = ((" Legendary hero ", 45), (" Pie ", 90))
 
-focus_line_for_items = 0
-
 clicked_down_for_items = False
 
 def effect_down_items():
     global buttons_lines_items
-    global focus_line_for_items
-    focus_line_for_items -= 1
-    if focus_line_for_items < 0: focus_line_for_items = len(buttons_lines_items) - 1
+    _other.cons.focus -= 1
+    if _other.cons.focus < 0: _other.cons.focus = len(buttons_lines_items) - 1
 
 
 clicked_up_for_items = False
 
 def effect_up_items():
     global buttons_lines_items
-    global focus_line_for_items
-    focus_line_for_items += 1
-    if focus_line_for_items >= len(buttons_lines_items): focus_line_for_items = 0
+    _other.cons.focus += 1
+    if _other.cons.focus >= len(buttons_lines_items): _other.cons.focus = 0
 
 
 def fight_act_items_mercy(lines=None):
-    global focus_line_for_act
     global get_pressed
     global buttons_lines_act
     global clicked_up_for_act
     global clicked_down_for_act
     global clicked_z_act
-    global focus_line_for_items
     global clicked_up_for_items
     global clicked_down_for_items
 
@@ -98,13 +88,13 @@ def fight_act_items_mercy(lines=None):
         _other.buttons.button_mercy()
 
     elif lines == "act":
-        if focus_line_for_act >= len(buttons_lines_act):
-            focus_line_for_act = 0
+        if _other.cons.focus >= len(buttons_lines_act):
+            focus = 0
 
         for indl, draw_but in enumerate(buttons_lines_act):
             _other.cons.scr.blit(_other.cons.my_font.render(draw_but, False, "white"),
             (_other.obj.field_b.x, _other.obj.field_b.y + 10 + 30 * indl))
-            if focus_line_for_act == indl:
+            if _other.cons.focus == indl:
                 _other.cons.scr.blit(_other.cons.my_font.render(draw_but, False, "yellow"),
                 (_other.obj.field_b.x, _other.obj.field_b.y + 10 + 30 * indl))
 
@@ -124,23 +114,23 @@ def fight_act_items_mercy(lines=None):
             get_pressed += 1
             if get_pressed >= 15:
                 get_pressed = 0
-                if buttons_lines_act[focus_line_for_act] == " Quit ":
+                if buttons_lines_act[_other.cons.focus] == " Quit ":
                     _other.obj.quit()
                     _other.cons.scene = _other.cons.scenes["location"]
-                if buttons_lines_act[focus_line_for_act] == " Do nothing ":
+                if buttons_lines_act[_other.cons.focus] == " Do nothing ":
                     _other.cons.scene = _other.cons.scenes["enemy_ataks"]
 
         if keys[pygame.K_x]:
             _other.cons.scene = _other.cons.scenes["fight_act_items_mercy"]
 
     elif lines == "items":
-        if focus_line_for_act >= len(buttons_lines_act):
-            focus_line_for_act = 0
+        if _other.cons.focus >= len(buttons_lines_act):
+            _other.cons.focus = 0
 
         for indl, draw_but in enumerate(buttons_lines_items):
             _other.cons.scr.blit(_other.cons.my_font.render(draw_but[0], False, "white"),
                                  (_other.obj.field_b.x, _other.obj.field_b.y + 10 + 30 * indl))
-            if focus_line_for_items == indl:
+            if _other.cons.focus == indl:
                 _other.cons.scr.blit(_other.cons.my_font.render(draw_but[0], False, "yellow"),
                                      (_other.obj.field_b.x, _other.obj.field_b.y + 10 + 30 * indl))
 
@@ -162,7 +152,7 @@ def fight_act_items_mercy(lines=None):
             if get_pressed >= 15:
                 get_pressed = 0
                 for indi, item in enumerate(buttons_lines_items):
-                    if indi == focus_line_for_items:
+                    if indi == _other.cons.focus:
                         _other.obj.soul.parem["hp"] += buttons_lines_items[indi][1]
                         if _other.obj.soul.parem["hp"] > _other.obj.soul.parem["max_hp"]:
                             _other.obj.soul.parem["hp"] = _other.obj.soul.parem["max_hp"]

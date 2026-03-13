@@ -37,15 +37,15 @@ while _other.cons.run:
             "enemy_ataks", "", " Last hit ", color3="red")
         elif _other.obj.soul.parem["hp"] == _other.obj.soul.parem["max_hp"]:
             _other.scenes.message_in_tablo.message_in_tablo(" You eat" +
-s.fight_act_items_mercy.buttons_lines_items[s.fight_act_items_mercy.focus_line_for_items][0],
+                                                            s.fight_act_items_mercy.buttons_lines_items[s.fight_act_items_mercy.focus][0],
     "enemy_ataks", " you restore " +
-str(s.fight_act_items_mercy.buttons_lines_items[s.fight_act_items_mercy.focus_line_for_items][1]),
+                                                            str(s.fight_act_items_mercy.buttons_lines_items[s.fight_act_items_mercy.focus][1]),
 " Your HP is full")
         else:
             _other.scenes.message_in_tablo.message_in_tablo(" You eat " +
-s.fight_act_items_mercy.buttons_lines_items[s.fight_act_items_mercy.focus_line_for_items][0], "enemy_ataks",
+                                                            s.fight_act_items_mercy.buttons_lines_items[s.fight_act_items_mercy.focus][0], "enemy_ataks",
             " you restore " +
-str(s.fight_act_items_mercy.buttons_lines_items[s.fight_act_items_mercy.focus_line_for_items][1]))
+                                                            str(s.fight_act_items_mercy.buttons_lines_items[s.fight_act_items_mercy.focus][1]))
     
     elif _other.cons.scene == _other.cons.scenes["you_kill"]:
         _other.scenes.enemy_say.enemy_say(" AAAAAAAAAAAA ", "enemy_death")
