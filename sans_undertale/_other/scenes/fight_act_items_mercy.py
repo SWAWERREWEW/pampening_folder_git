@@ -31,7 +31,7 @@ def effect_up_act():
 get_pressed = 0
 
 
-buttons_lines_items = ((" Legendary hero ", 45), (" Pie ", 90))
+buttons_lines_items = ((" Legendary hero ", 45), (" Pie ", 90), (" candy ", 4))
 
 clicked_down_for_items = False
 
