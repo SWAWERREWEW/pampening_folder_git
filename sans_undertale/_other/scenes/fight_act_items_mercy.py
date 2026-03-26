@@ -7,56 +7,34 @@ import _other.buttons
 import _other.scenes.message_in_tablo
 
 buttons_lines_act = [" Quit ", " Do nothing ", " Nothing "]
-
-
-clicked_down_for_act = False
-
-
-def effect_down_act():
-    global buttons_lines_act
-    _other.cons.focus += 1
-    if _other.cons.focus >= len(buttons_lines_act):
-        _other.cons.focus = 0
-
-
-clicked_up_for_act = False
-
-
-def effect_up_act():
-    global buttons_lines_act
-    _other.cons.focus -= 1
-    if _other.cons.focus < 0: _other.cons.focus = len(buttons_lines_act) - 1
-
-
+buttons_list = ["act", "items"]
+clicked_down = False
+clicked_up = False
 get_pressed = 0
 
 
+def effect_buttons(direction):
+    global buttons_list
+    if direction == "down":
+        _other.cons.focus += 1
+        if _other.cons.focus >= len(buttons_lines_act):
+            _other.cons.focus = 0
+
+    elif direction == "up":
+        _other.cons.focus -= 1
+        if _other.cons.focus < 0:
+            _other.cons.focus = len(buttons_lines_act) - 1
+
+
 buttons_lines_items = ((" Legendary hero ", 45), (" Pie ", 90), (" candy ", 4))
-
-clicked_down_for_items = False
-
-def effect_down_items():
-    global buttons_lines_items
-    _other.cons.focus -= 1
-    if _other.cons.focus < 0: _other.cons.focus = len(buttons_lines_items) - 1
-
-
-clicked_up_for_items = False
-
-def effect_up_items():
-    global buttons_lines_items
-    _other.cons.focus += 1
-    if _other.cons.focus >= len(buttons_lines_items): _other.cons.focus = 0
 
 
 def fight_act_items_mercy(lines=None):
     global get_pressed
     global buttons_lines_act
-    global clicked_up_for_act
-    global clicked_down_for_act
+    global clicked_down
     global clicked_z_act
-    global clicked_up_for_items
-    global clicked_down_for_items
+    global clicked_up
 
 
     _other.obj.recreate_field()
@@ -101,16 +79,18 @@ def fight_act_items_mercy(lines=None):
         keys = pygame.key.get_pressed()
 
         if keys[pygame.K_s] or keys[pygame.K_d]:
-            clicked_down_for_act = True
+            clicked_down = True
         else:
-            clicked_down_for_act = False
+            clicked_down = False
 
         if keys[pygame.K_w] or keys[pygame.K_a]:
-            clicked_up_for_act = True
+            clicked_up = True
         else:
-            clicked_up_for_act = False
+            clicked_up = False
 
         if keys[pygame.K_z]:
+            clicked_down = False
+            clicked_up = False
             get_pressed += 1
             if get_pressed >= 15:
                 get_pressed = 0
@@ -137,17 +117,19 @@ def fight_act_items_mercy(lines=None):
         keys = pygame.key.get_pressed()
 
         if keys[pygame.K_s] or keys[pygame.K_d]:
-            clicked_down_for_items = True
+            clicked_down = True
         else:
-            clicked_down_for_items = False
+            clicked_down = False
 
         if keys[pygame.K_w] or keys[pygame.K_a]:
-            clicked_up_for_items = True
+            clicked_up = True
         else:
-            clicked_up_for_items = False
+            clicked_up = False
 
 
         if keys[pygame.K_z]:
+            clicked_down = False
+            clicked_up = False
             get_pressed += 1
             if get_pressed >= 15:
                 get_pressed = 0
@@ -173,5 +155,3 @@ def fight_act_items_mercy(lines=None):
     elif _other.cons.mercy_quit >= 4:
         _other.cons.scene = _other.cons.scenes["you_mercy_enemy"]
         _other.cons.message["win?"] = True
-
-    

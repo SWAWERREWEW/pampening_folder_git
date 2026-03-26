@@ -89,17 +89,17 @@ while _other.cons.run:
     pygame.display.update()
     for event in pygame.event.get():
 
-        if _other.scenes.fight_act_items_mercy.clicked_down_for_act:
-            _other.scenes.fight_act_items_mercy.effect_down_act()
+        if _other.scenes.fight_act_items_mercy.clicked_down:
+            _other.scenes.fight_act_items_mercy.effect_buttons("down")
 
-        if _other.scenes.fight_act_items_mercy.clicked_up_for_act:
-            _other.scenes.fight_act_items_mercy.effect_up_act()
+        if _other.scenes.fight_act_items_mercy.clicked_up:
+            _other.scenes.fight_act_items_mercy.effect_buttons("up")
 
-        if _other.scenes.fight_act_items_mercy.clicked_up_for_items:
-            _other.scenes.fight_act_items_mercy.effect_up_items()
+        if _other.scenes.fight_act_items_mercy.clicked_up:
+            _other.scenes.fight_act_items_mercy.effect_buttons("up")
 
-        if _other.scenes.fight_act_items_mercy.clicked_down_for_items:
-            _other.scenes.fight_act_items_mercy.effect_down_items()
+        if _other.scenes.fight_act_items_mercy.clicked_down:
+            _other.scenes.fight_act_items_mercy.effect_buttons("down")
 
         if event.type == pygame.QUIT:
             _other.cons.run = False
