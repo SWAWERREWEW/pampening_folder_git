@@ -1,6 +1,7 @@
 import pygame
 import _other.cons
 import _other.objectss
+import _other.pictures.obj_pictures
 
 pygame.init()
 
@@ -15,9 +16,13 @@ while run:
 
     _other.cons.scr.fill(pygame.Color(_other.cons.active_color))
 
+
+
     # Надпись
     _other.cons.scr.blit(_other.cons.my_font.render(_other.cons.active_color, False,
     "black" if _other.cons.active_color != "black" else "white"), (400, 400))
+
+    _other.cons.scr.blit(_other.pictures.obj_pictures.main_picture, (0, 0))
 
     # Кнопка
     _other.objectss.button_prayer_10()
@@ -25,10 +30,12 @@ while run:
     pygame.display.update()
 
     for event in pygame.event.get():
-        if _other.objectss.is_clicked_button_prayer_10: _other.objectss.effect_button_prayer_10()
+        if _other.cons.was_clicked:
+            _other.cons.effect_button()
+
         if event.type == pygame.QUIT:
-            pygame.quit()
             run = False
+            pygame.quit()
             exit()
 
     clock.tick(_other.cons.fps)

@@ -14,6 +14,13 @@ def button_prayer_10():
     global lil_colors
     global is_clicked_button_prayer_10
 
+    def effect_button_prayer_10():
+        global lil_colors
+
+        from random import shuffle
+        shuffle(lil_colors)
+        _other.cons.active_color = lil_colors[0]
+
     text = " Button "
     colors = ("black",  "white")
     colors2 = ("yellow", "black")
@@ -26,20 +33,18 @@ def button_prayer_10():
 
     mouse = pygame.mouse.get_pos()
 
-    if text_rect.collidepoint(mouse): text_py = _other.cons.my_font.render(text, False, colors2[0], colors2[1])
-    else: text_py = _other.cons.my_font.render(text, False, colors[0], colors[1])
+    if text_rect.collidepoint(mouse):
+        text_py = _other.cons.my_font.render(text, False, colors2[0], colors2[1])
+    else:
+        text_py = _other.cons.my_font.render(text, False, colors[0], colors[1])
 
     if text_rect.collidepoint(mouse) and pygame.mouse.get_pressed()[0]:
         text_py = _other.cons.my_font.render(text, False, colors2[0], colors2[1])
-        is_clicked_button_prayer_10 = True
-    else: is_clicked_button_prayer_10 = False
+        # is_clicked_button_prayer_10 = True
+        _other.cons.was_clicked = True
+        _other.cons.effect_button = effect_button_prayer_10
+
+    else:
+        _other.cons.was_clicked = False
 
     _other.cons.scr.blit(text_py, coord)
-
-
-def effect_button_prayer_10():
-    global lil_colors
-
-    from random import shuffle
-    shuffle(lil_colors)
-    _other.cons.active_color = lil_colors[0]

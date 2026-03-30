@@ -1,4 +1,3 @@
-﻿iamalwayscomeback
+﻿pleasehelp
 call .\.venv\Scripts\activate.bat
-jupyter notebook
-deactivate
+python -m jupyter notebook
