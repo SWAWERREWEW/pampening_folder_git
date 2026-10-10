@@ -1,0 +1,25 @@
+{
+    "choices": [
+        {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+                "role": "assistant",
+                "content": "\n\nЗдравствуйте! Как я могу помочь?",
+                "reasoning": null,
+                "tool_call_id": null,
+                "tool_calls": []
+            },
+            "logprobs": null
+        }
+    ],
+    "created": 1791203229,
+    "id": "chatcmpl-4d3328a3-ae1d-4651-90cd-62633e73ab78",
+    "model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-7B",
+    "system_fingerprint": "vllm-0.21.0-baceb921",
+    "usage": {
+        "completion_tokens": 163,
+        "prompt_tokens": 22,
+        "total_tokens": 185
+    }
+}
