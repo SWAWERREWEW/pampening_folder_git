@@ -1,0 +1,25 @@
+{
+    "choices": [
+        {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+                "role": "assistant",
+                "content": "\n\nЗдравствуйте! Я умею говорить по-русски. Как я могу помочь?",
+                "reasoning": null,
+                "tool_call_id": null,
+                "tool_calls": []
+            },
+            "logprobs": null
+        }
+    ],
+    "created": 1791200742,
+    "id": "chatcmpl-596bb96b-d54f-42e7-aee0-77e3f0ed02fd",
+    "model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-7B",
+    "system_fingerprint": "vllm-0.21.0-baceb921",
+    "usage": {
+        "completion_tokens": 107,
+        "prompt_tokens": 22,
+        "total_tokens": 129
+    }
+}
